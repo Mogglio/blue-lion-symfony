@@ -13,6 +13,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $em->getConnection()->connect();
+        $connected = $em->getConnection()->isConnected();
+        if($connected){
+            echo "Default controller src/AppBundle/Controller/DefaultController";
+            var_dump($connected);
+            echo "connected to database declared in config.yml :)";
+        }
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
