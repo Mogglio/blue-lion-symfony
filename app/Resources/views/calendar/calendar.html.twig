@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="calendar">
+
+    <div class="d-flex flex-row align-items-center justify-content-between mx-sm-3">
+
+        {#{{ dump(datasDate) }}#}
+        <h1>{{ months['month_name'] }}</h1>
+
+        {#<?php if (isset($_GET['success'])): ?>#}
+        {#<div class="container">#}
+            {#<div class="alert alert-success">#}
+                {#L'évènement a bien été enregistré#}
+            {#</div>#}
+        {#</div>#}
+        {#<?php endif; ?>#}
+
+
+        <div>
+            <a href="{{ app.request.getBaseURL() }}calendar?month={{ previous_month.month }}&year={{ previous_month.year }}" class="btn btn-primary">&lt;</a>
+            <a href="{{ app.request.getBaseURL() }}calendar?month={{ next_month.month }}&year={{ next_month.year }}" class="btn btn-primary">&gt;</a>
+        </div>
+    </div>
+
+    <table class="calendar__table calendar__table--{{ datasDate['weeks'] }}weeks">
+        {% for week in weeks %}
+        <tr>
+            {% for k,day in week %}
+            <td class="{% if day['withinMonth'] == false %}calendar__othermonth{% endif %} {% if day['isToday'] %}is-today{% endif %}">
+                {% if week is same as(0) %}
+                    <div class="calendar__weekday">{{ k }}</div>
+                {% endif %}
+                <a class="calendar__day" href="{{ app.request.getBaseURL() }}addcalendar?date={{ day['date'].date|date("Y-m-d") }}">{{ day['day_nbr'] }}</a>
+                {% for events in day['eventsForDay'] %}
+                <div class="calendar__event">
+                    {% for event in events %}
+                    {{ event.start.date|date("H:i")}}
+                    {{ event.name }}
+                    {#<?= $event->getStart()->format('H:i') ?> - <a href="/edit.php?id=<?= $event->getId(); ?>"><?= h($event->getName()); ?></a>#}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ app.request.getBaseURL() }}addcalendar" class="calendar__button">+</a>
+
+</div>
+
+{% endblock %}

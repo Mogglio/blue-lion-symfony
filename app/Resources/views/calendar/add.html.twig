@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_row(form.name) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_row(form.date) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_row(form.start) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_row(form.end) }}
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter l'évènement</button>
+    {{ form_end(form) }}
+
+{% endblock %}

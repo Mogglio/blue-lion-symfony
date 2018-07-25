@@ -1,0 +1,80 @@
+
+/****
+HEADER
+ *****/
+
+
+header .navbar .logo {
+  max-width: 50px;
+}
+
+header .navbar h1 {
+  font-size: 18px;
+}
+
+  /****
+  CALENDAR
+  ****/
+.calendar {
+  position: relative;
+}
+
+.calendar__table {
+  width: 100%;
+  height: calc(100vh - 128px);
+}
+
+.calendar__table td {
+  padding: 10px;
+  border: 1px solid #CCC;
+  vertical-align: top;
+  width: 14.29%;
+  height: 20%;
+}
+
+.calendar__table td.is-today {
+  background-color: #f3f3f3;
+}
+
+.calendar__table--6weeks td {
+  height:  16.66%;
+}
+
+.calendar__weekday {
+  font-weight: bold;
+  color: #000;
+  font-size: 1.2em;
+}
+
+.calendar__day {
+  font-size: 1.3em;
+}
+
+.calendar__othermonth .calendar__day {
+  opacity: 0.3;
+}
+
+.calendar__button {
+  display: block;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: #FFF;
+  font-size: 30px;
+  background-color: #007bff;
+  border-radius: 50%;
+
+  box-shadow: 0 6px 10px 0 #0000001a,0 1px 18px 0 #0000001a,0 3px 5px -1px #0003;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.calendar__button:hover {
+  text-decoration: none;
+  color: #FFF;
+  transform: scale(1.2);
+}
