@@ -25,10 +25,9 @@ class Event {
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    private $description = null;
 
     /**
      * @ORM\Column(type="date")

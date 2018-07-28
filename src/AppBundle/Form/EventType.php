@@ -23,7 +23,7 @@ class EventType extends AbstractType
         }
         $builder
             ->add('name', TextType::class, array('label' => 'Titre'))
-            ->add('description', TextType::class, array('label' => 'Description'))
+            ->add('description', TextType::class, array('label' => 'Description', 'data' => '', 'required' => false))
             ->add('date', DateType::class, array(
                 'label' => 'Date',
                 'attr' => array('value' => $date),
