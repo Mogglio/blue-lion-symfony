@@ -26,6 +26,15 @@ class EventRepository extends EntityRepository
             ->getQuery();
 
         return $qb->execute();
+    }
 
+    public function getEventById($id_event) {
+
+        $qb = $this->createQueryBuilder('e')
+            ->andWhere('e.id = :id_event')
+            ->setParameter('id_event', $id_event)
+            ->getQuery();
+
+        return $qb->execute();
     }
 }

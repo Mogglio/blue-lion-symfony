@@ -9,6 +9,7 @@ use AppBundle\Form\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
 {
@@ -39,8 +40,6 @@ class CalendarController extends Controller
         for ($i = 0; $i < $datasDate['weeks']; $i++) {
             foreach ($months['days'] as $k => $day) {
                 $date = $datasDate['start']->modify('+' . ($k + $i * 7) . " days");
-
-//                var_dump($events[$date->format('Y-m-d')]);
 
                 if(!empty($events[$date->format('Y-m-d')])) {
                     $eventsForDay = $events[$date->format('Y-m-d')];
@@ -203,5 +202,28 @@ class CalendarController extends Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * @Route("/calendar/loading")
+     */
+    public function getEventAction(Request $request) {
+
+        $id_event = $_POST['event_id'];
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->getEventById($id_event);
+
+        $output = "";
+        $output .= "<div id='event_popover $id_event'>";
+        $output .= "<h3>".$event[0]->name."</h3>";
+        $output .= "<p>".$event[0]->description."</p>";
+        $output .= "<p>Début : ".$event[0]->start->format('H:i')."<br />";
+        $output .= "Fin : ".$event[0]->end->format('H:i')."</p>";
+        $output .= "<button id='add_to_event' class='btn btn-success'>+ s'inscrire</button>";
+        $output .= "</div>";
+        echo $output;
+        return new Response();
     }
 }

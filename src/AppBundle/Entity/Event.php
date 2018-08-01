@@ -22,30 +22,30 @@ class Event {
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $name;
+    public $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description = null;
+    public $description = null;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
      */
-    private $date;
+    public $date;
 
     /**
      * @ORM\Column(type="time")
      * @Assert\NotBlank()
      */
-    private $start;
+    public $start;
 
     /**
      * @ORM\Column(type="time")
      * @Assert\NotBlank()
      */
-    private $end;
+    public $end;
 
     public function getId() {
         return $this->id;

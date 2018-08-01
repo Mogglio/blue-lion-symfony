@@ -35,9 +35,14 @@
                 {% for events in day['eventsForDay'] %}
                 <div class="calendar__event">
                     {% for event in events %}
-                    {{ event.start.date|date("H:i")}}
-                    {{ event.name }}
-                    {#<?= $event->getStart()->format('H:i') ?> - <a href="/edit.php?id=<?= $event->getId(); ?>"><?= h($event->getName()); ?></a>#}
+                        <div id="popoverOpener">
+                            {#<button type="button" class="btn btn-default">Open popover</button>#}
+                            <a href="#" id="{{ event.id }}" data-toggle="popover">
+                                {{ event.start.date|date("H:i")}}
+                                {{ event.name }}
+                            </a>
+                            {#<?= $event->getStart()->format('H:i') ?> - <a href="/edit.php?id=<?= $event->getId(); ?>"><?= h($event->getName()); ?></a>#}
+                        </div>
                     {% endfor %}
                 </div>
                 {% endfor %}
@@ -46,9 +51,8 @@
         </tr>
         {% endfor %}
     </table>
-
     <a href="{{ app.request.getBaseURL() }}addcalendar" class="calendar__button">+</a>
-
 </div>
 
+<script src="{{ asset('js/popover.js') }}"></script>
 {% endblock %}
