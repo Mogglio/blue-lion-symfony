@@ -56,7 +56,6 @@ class Event {
     }
 
     public function getDescription () {
-
         return $this->description;
     }
 
@@ -80,8 +79,7 @@ class Event {
         $this->description = $description;
     }
 
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
     }
 

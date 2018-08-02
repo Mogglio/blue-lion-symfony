@@ -205,25 +205,44 @@ class CalendarController extends Controller
     }
 
     /**
-     * @Route("/calendar/loading")
+     * @Route("/calendar/loading", name="loading", condition="request.isXmlHttpRequest()")
      */
     public function getEventAction(Request $request) {
 
-        $id_event = $_POST['event_id'];
+        if(isset($_POST['event_id'])) {
 
-        $event = $this->getDoctrine()
-            ->getRepository(Event::class)
-            ->getEventById($id_event);
+            $id_event = $_POST['event_id'];
+            $event = $this->getDoctrine()
+                ->getRepository(Event::class)
+                ->getEventById($id_event);
 
-        $output = "";
-        $output .= "<div id='event_popover $id_event'>";
-        $output .= "<h3>".$event[0]->name."</h3>";
-        $output .= "<p>".$event[0]->description."</p>";
-        $output .= "<p>Début : ".$event[0]->start->format('H:i')."<br />";
-        $output .= "Fin : ".$event[0]->end->format('H:i')."</p>";
-        $output .= "<button id='add_to_event' class='btn btn-success'>+ s'inscrire</button>";
-        $output .= "</div>";
-        echo $output;
+            $output = "";
+            $output .= "<div id='event_popover $id_event'>";
+            $output .= "<h3>" . $event[0]->name . "</h3>";
+            $output .= "<p>" . $event[0]->description . "</p>";
+            $output .= "<p>Début : " . $event[0]->start->format('H:i') . "<br />";
+            $output .= "Fin : " . $event[0]->end->format('H:i') . "</p>";
+            $output .= "<button id='add_to_event' data-event='$id_event' class='btn btn-success'>+ s'inscrire</button>";
+            $output .= "</div>";
+            echo $output;
+            return new Response();
+        }
+        return new Response();
+    }
+
+    /**
+     * @Route("/calendar/addtoevent")
+     */
+    public function getAddToEventAction(Request $request) {
+
+        if(isset($_POST['event_id'])) {
+
+            $id_event = $_POST['event_id'];
+            $user = $this->getUser();
+            var_dump($user);
+
+            return new Response();
+        }
         return new Response();
     }
 }

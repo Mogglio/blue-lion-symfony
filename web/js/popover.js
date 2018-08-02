@@ -36,3 +36,17 @@ $(document).ready(function(){
         return '<div id="thepopover">Loading...</div>';
     }
 });
+
+$(document).on("click", '#add_to_event', function(event) {
+    var id_event = $(this).data('event');
+
+    $.ajax({
+        type: 'POST',
+        url: '/calendar/addtoevent',
+        data: {event_id: id_event},
+        dataType: 'html',
+        success: function(response){
+            $('#thepopover').html(response);
+        }
+    });
+});
