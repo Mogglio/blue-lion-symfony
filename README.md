@@ -1,4 +1,19 @@
 blue-lion
 =========
 
-A Symfony project created on May 1, 2018, 3:18 pm.
+To install project in local :
+
+- install composer (if not install)
+- composer install
+- composer update
+- composer dump-autoload
+
+To generate BDD :
+
+- update app/config/parameters.yml to set your mysql log
+- php bin/console doctrine:schema:update --force
+
+Start the project :
+
+- php bin/console server:start
+- and go to http://127.0.0.1:8000
