@@ -16,3 +16,4 @@ To generate BDD :
 Start the project :
 
 - php bin/console server:start
+- and go to http://127.0.0.1:8000
